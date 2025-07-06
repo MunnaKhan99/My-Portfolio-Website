@@ -36,7 +36,7 @@
         <section id="hero">
             <div class="hero-content">
                 <h1 class="fade-in">Hi...... <br>I am <span class="neon-text" id="animated-name"></span></h1>
-                <p class="animated-text fade-in">Frontend Developer || MERN</p>
+                <p class="animated-text fade-in"><span id="typed-text"></span><span class="cursor">|</span></p>
                 <div class="hero-buttons fade-in">
                     <a href="https://drive.google.com/file/d/1kH7TWxZTt9t8kvl1MP-sYdd1JAd4EuM9/view?usp=drive_link" class="btn primary-btn" target="_blank">Resume</a>
                     <a href="#projects" class="btn secondary-btn">Portfolio</a>
@@ -204,17 +204,14 @@
                         <a href="mailto:munnakhan01329@gmail.com" class="btn primary-btn" style="margin-top: 1.5rem;">Send me an Email</a>
                     </div>
                     <form id="contact-form">
-                        <div class="form-group floating-label-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name">Name</label>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required placeholder="Your Name">
                         </div>
-                        <div class="form-group floating-label-group">
-                            <input type="email" id="email" name="email" required>
-                            <label for="email">Email</label>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder="Your Email">
                         </div>
-                        <div class="form-group floating-label-group">
-                            <textarea id="message" name="message" rows="6" required></textarea>
-                            <label for="message">Message</label>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="6" required placeholder="Your Message"></textarea>
                         </div>
                         <button type="submit" class="btn primary-btn">Send Message</button>
                     </form>

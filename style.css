@@ -5,16 +5,20 @@
 
 :root {
     --primary-dark: #1a1a2e; /* Deep dark background */
+    --primary-dark-rgb: 26, 26, 46; /* RGB values for primary-dark */
     --secondary-dark: #22223b; /* Slightly lighter dark for sections/cards */
     --text-light: #e0e0e0; /* Light gray for general text */
     --text-accent: #00efff; /* Neon accent color */
     --text-muted: #a0a0a0; /* Muted gray for secondary text */
     --border-neon: rgba(0, 239, 255, 0.3); /* Neon border for elements */
     --shadow-neon: 0 0 15px rgba(0, 239, 255, 0.4); /* Neon glow shadow */
-    --button-bg-primary: #00efff; /* Neon for primary buttons */
-    --button-text-primary: #1a1a2e; /* Dark text on neon buttons */
-    --button-bg-secondary: #33334f; /* Darker background for secondary buttons */
-    --button-text-secondary: #00efff; /* Neon text on secondary buttons */
+
+    /* New Button Variables */
+    --btn-gradient-1: #00efff;
+    --btn-gradient-2: #8e44ad;
+    --btn-gradient-3: #00ff95;
+    --btn-text-color: #1a1a2e; /* Dark text for contrast on bright buttons */
+    --btn-hover-bg-opacity: 0.2; /* Opacity for button background on hover */
 }
 
 body {
@@ -192,7 +196,7 @@ main {
 }
 
 section {
-    padding: 6rem 0;
+    padding: 4rem 0;
 }
 
 /* Hero Section */
@@ -262,32 +266,49 @@ section {
     text-decoration: none;
     border-radius: 0.3rem;
     font-weight: 600;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     margin: 0 0.6rem;
-    border: none;
+    border: 1px solid var(--text-accent); /* Neon outline */
     cursor: pointer;
+    background-color: rgba(var(--primary-dark-rgb), 0.6); /* Semi-transparent background */
+    color: var(--text-light); /* Light text color */
+    backdrop-filter: blur(5px); /* Glass effect */
+    box-shadow: 0 0 10px var(--text-accent); /* Initial neon glow */
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif; /* Modern font */
+}
+
+.btn:hover {
+    background-color: rgba(var(--primary-dark-rgb), 0.8); /* More opaque on hover */
+    box-shadow: 0 0 20px var(--text-accent), 0 0 30px var(--text-accent); /* Stronger glow */
+    transform: translateY(-3px); /* Lift effect */
+    filter: brightness(1.2); /* Brighter look */
 }
 
 .primary-btn {
-    background-color: var(--button-bg-primary);
-    color: var(--button-text-primary);
+    background-color: var(--text-accent); /* Solid accent color for primary */
+    color: var(--primary-dark); /* Dark text for contrast */
+    border: none; /* No border for primary button */
+    box-shadow: 0 0 15px var(--text-accent); /*Stronger initial glow*/
 }
 
 .primary-btn:hover {
-    background-color: #00caca;
-    transform: translateY(-0.12rem);
+    background-color: var(--text-accent); /* Keep solid on hover */
+    box-shadow: 0 0 25px var(--text-accent), 0 0 40px var(--text-accent); /* Even stronger glow */
+    transform: translateY(-5px); /* More pronounced lift */
 }
 
 .secondary-btn {
-    background-color: var(--button-bg-secondary);
-    color: var(--button-text-secondary);
-    border: 1px solid var(--border-neon);
+    background-color: transparent; /* Transparent background to show canvas */
+    color: var(--text-light); /* Light text color */
+    border: 1px solid var(--text-accent); /* Neon outline */
+    box-shadow: 0 0 10px var(--text-accent); /* Initial neon glow */
 }
 
 .secondary-btn:hover {
-    background-color: var(--text-accent);
-    color: var(--button-text-primary);
-    transform: translateY(-0.12rem);
+    background-color: rgba(var(--primary-dark-rgb), 0.8); /* More opaque on hover */
+    box-shadow: 0 0 20px var(--text-accent), 0 0 30px var(--text-accent); /* Stronger glow */
+    transform: translateY(-3px); /* Lift effect */
+    filter: brightness(1.2); 
 }
 
 /* Fade In Animation */
@@ -600,15 +621,24 @@ h2 {
 .project-btn {
     display: inline-block;
     padding: 0.6rem 1.2rem;
-    background-color: var(--button-bg-primary);
-    color: var(--button-text-primary);
     text-decoration: none;
     border-radius: 0.3rem;
     font-weight: 600;
-    transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
+    transition: all 0.3s ease;
     opacity: 0;
     transform: translateY(1.2rem);
     text-align: center;
+    background-color: rgba(var(--primary-dark-rgb), 0.6); /* Semi-transparent background */
+    color: var(--text-light); /* Light text color */
+    border: 1px solid var(--text-accent); /* Neon outline */
+    box-shadow: 0 0 10px var(--text-accent); /* Initial neon glow */
+}
+
+.project-btn:hover {
+    background-color: rgba(var(--primary-dark-rgb), 0.8); /* More opaque on hover */
+    box-shadow: 0 0 20px var(--text-accent), 0 0 30px var(--text-accent); /* Stronger glow */
+    transform: translateY(-3px); /* Lift effect */
+    filter: brightness(1.2); /* Brighter look */
 }
 
 .project-card:hover .project-btn {
@@ -654,23 +684,27 @@ h2 {
 .blog-card .blog-btn {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: var(--button-bg-primary);
-    color: var(--button-text-primary);
     text-decoration: none;
     border-radius: 0.3rem;
     font-weight: 600;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s ease;
+    background-color: rgba(var(--primary-dark-rgb), 0.6); /* Semi-transparent background */
+    color: var(--text-light); /* Light text color */
+    border: 1px solid var(--text-accent); /* Neon outline */
+    box-shadow: 0 0 10px var(--text-accent); /* Initial neon glow */
 }
 
 .blog-card .blog-btn:hover {
-    background-color: #00caca;
-    transform: translateY(-0.1rem);
+    background-color: rgba(var(--primary-dark-rgb), 0.8); /* More opaque on hover */
+    box-shadow: 0 0 20px var(--text-accent), 0 0 30px var(--text-accent); /* Stronger glow */
+    transform: translateY(-3px); /* Lift effect */
+    filter: brightness(1.2); /* Brighter look */
 }
 
 /* Testimonials Section */
 #testimonials {
     background-color: transparent;
-    padding: 6rem 0;
+    padding: 4rem 0;
 }
 
 .testimonials-grid {
@@ -813,22 +847,10 @@ h2 {
     overflow: hidden;
 }
 
-.form-group label {
-    position: absolute;
-    left: 0.9rem;
-    top: 0.9rem; /* Adjusted initial top position */
-    color: var(--text-muted);
-    font-size: 1rem;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    background-color: var(--primary-dark); /* Match input background */
-    padding: 0 0.3rem;
-}
-
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1.8rem 0.9rem 0.6rem 0.9rem; /* Increased top padding */
+    padding: 0.9rem;
     border: 1px solid var(--border-neon);
     border-radius: 0.5rem;
     font-family: 'Montserrat', sans-serif;
@@ -845,17 +867,13 @@ h2 {
     background-color: #2a2a40;
 }
 
-.form-group input:focus + label,
-.form-group textarea:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group textarea:not(:placeholder-shown) + label {
-    top: -0.2rem; /* Adjusted floating label top position */
-    left: 0.6rem;
-    font-size: 0.8rem;
-    color: var(--text-accent);
-    background-color: var(--primary-dark); /* Solid background for floating label */
-    padding: 0 0.3rem;
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
 }
+
+
 
 .form-group textarea {
     resize: vertical;
@@ -867,19 +885,22 @@ h2 {
     padding: 0.9rem 2.5rem;
     font-size: 1.1rem;
     cursor: pointer;
-    border: none;
     border-radius: 0.5rem;
-    background-color: var(--button-bg-primary);
-    color: var(--button-text-primary);
     font-weight: 600;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s ease; /* Smooth transitions */
     align-self: flex-start;
+    border: 1px solid var(--text-accent); /* Neon outline */
+    background-color: rgba(var(--primary-dark-rgb), 0.6); /* Semi-transparent background */
+    color: var(--text-light); /* Light text color */
+    backdrop-filter: blur(5px); /* Glass effect */
+    box-shadow: 0 0 10px var(--text-accent); /* Initial neon glow */
 }
 
 #contact-form .btn:hover {
-    background-color: #00caca;
-    transform: translateY(-0.18rem);
-    box-shadow: 0 0 15px rgba(0, 239, 255, 0.7);
+    background-color: rgba(var(--primary-dark-rgb), 0.8); /* More opaque on hover */
+    box-shadow: 0 0 20px var(--text-accent), 0 0 30px var(--text-accent); /* Stronger glow */
+    transform: translateY(-3px); /* Lift effect */
+    filter: brightness(1.2); /* Brighter look */
 }
 
 /* Footer */

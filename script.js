@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Existing JavaScript for typed text and scroll reveal (if any, ensure it's compatible)
     const typedTextElement = document.getElementById('typed-text');
-    const phrases = ["Frontend Developer", "MERN Stack Developer", "Web Designer"];
+    const phrases = ["Frontend Developer", "Software Engineer", "DevOps Enthusiast"];
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pauseBeforeType = 500;
 
     function type() {
+        console.log('type() function called. Current phraseIndex:', phraseIndex, 'charIndex:', charIndex, 'isDeleting:', isDeleting);
         const currentPhrase = phrases[phraseIndex];
         if (isDeleting) {
             typedTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
@@ -137,9 +138,13 @@ document.addEventListener('DOMContentLoaded', function() {
             charIndex++;
         }
 
+        console.log('Updated textContent:', typedTextElement.textContent);
+
         if (!isDeleting && charIndex === currentPhrase.length) {
+            console.log('Phrase fully typed, setting isDeleting to true.');
             setTimeout(() => isDeleting = true, pauseBeforeDelete);
         } else if (isDeleting && charIndex === 0) {
+            console.log('Phrase fully deleted, moving to next phrase.');
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
             setTimeout(() => type(), pauseBeforeType);
@@ -161,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nameCharIndex++;
             setTimeout(typeName, 100); // Typing speed for name
         } else {
+            console.log('Name fully typed, starting phrase typing.');
             // Start phrase typing after name is fully typed
             setTimeout(() => type(), 500); // Small delay before starting phrases
         }
