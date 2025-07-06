@@ -1,6 +1,124 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Hide preloader once content is loaded
+    const preloader = document.querySelector('.preloader');
+    if (preloader) {
+        preloader.classList.add('hidden');
+    }
+
+    // Canvas Background Animation
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let mouse = { x: undefined, y: undefined };
+    let particles = [];
+
+    // Set canvas size
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Mouse movement listener
+    window.addEventListener('mousemove', function(event) {
+        mouse.x = event.x;
+        mouse.y = event.y;
+    });
+
+    // Particle constructor
+    class Particle {
+        constructor(x, y, directionX, directionY, size, color) {
+            this.x = x;
+            this.y = y;
+            this.directionX = directionX;
+            this.directionY = directionY;
+            this.size = size;
+            this.color = color;
+        }
+
+        // Draw particle
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+
+        // Update particle position and interaction
+        update() {
+            // Check if particle is still within canvas
+            if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+                this.directionX = -this.directionX;
+            }
+            if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+                this.directionY = -this.directionY;
+            }
+
+            this.x += this.directionX;
+            this.y += this.directionY;
+
+            // Mouse interaction
+            const distance = Math.sqrt(Math.pow(mouse.x - this.x, 2) + Math.pow(mouse.y - this.y, 2));
+            if (distance < 100) { // If particle is close to mouse
+                if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                    this.x += 10;
+                }
+                if (mouse.x > this.x && this.x > this.size * 10) {
+                    this.x -= 10;
+                }
+                if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                    this.y += 10;
+                }
+                if (mouse.y > this.y && this.y > this.size * 10) {
+                    this.y -= 10;
+                }
+            }
+            this.draw();
+        }
+    }
+
+    // Create particle array
+    function init() {
+        particles = [];
+        const numberOfParticles = (canvas.width * canvas.height) / 9000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            const size = (Math.random() * 5) + 1;
+            const x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+            const y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+            const directionX = (Math.random() * 0.5) - 0.25;
+            const directionY = (Math.random() * 0.5) - 0.25;
+            const color = 'rgba(255, 255, 255, 0.5)'; // Subtle white for particles
+            particles.push(new Particle(x, y, directionX, directionY, size, color));
+        }
+    }
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            for (let j = i; j < particles.length; j++) {
+                const distance = Math.sqrt(Math.pow(particles[i].x - particles[j].x, 2) + Math.pow(particles[i].y - particles[j].y, 2));
+                if (distance < 120) { // Draw lines between particles within 120px
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(0, 239, 255, ${1 - (distance / 120)})`; // Line color with decreasing opacity
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    init();
+    animate();
+
+    // Existing JavaScript for typed text and scroll reveal (if any, ensure it's compatible)
     const typedTextElement = document.getElementById('typed-text');
-    const phrases = ["Aspiring Software Engineer", "Frontend Developer", "Full-Stack Enthusiast"];
+    const phrases = ["Frontend Developer", "MERN Stack Developer", "Web Designer"];
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -32,20 +150,39 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(type, currentSpeed);
     }
 
-    type();
+    // Start typing animation after name is typed
+    const animatedNameElement = document.getElementById('animated-name');
+    const nameToAnimate = "Munna Khan";
+    let nameCharIndex = 0;
+
+    function typeName() {
+        if (nameCharIndex < nameToAnimate.length) {
+            animatedNameElement.textContent += nameToAnimate.charAt(nameCharIndex);
+            nameCharIndex++;
+            setTimeout(typeName, 100); // Typing speed for name
+        } else {
+            // Start phrase typing after name is fully typed
+            setTimeout(() => type(), 500); // Small delay before starting phrases
+        }
+    }
+
+    typeName();
 
     // Scroll Reveal Animation for general elements
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    console.log('Scroll Reveal Elements found:', scrollRevealElements);
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            console.log('Observing entry:', entry.target.id, 'isIntersecting:', entry.isIntersecting);
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                console.log('Added active class to:', entry.target.id);
                 // observer.unobserve(entry.target); // Keep observing if elements can go out of view and come back
             }
         });
     }, {
-        threshold: 0.1
+        threshold: 0.5
     });
 
     scrollRevealElements.forEach(element => {

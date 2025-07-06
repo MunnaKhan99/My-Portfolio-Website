@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="background-canvas"></canvas>
+    <div class="preloader">
+        <div class="logo">MU<span class="stylized-n">N</span><span class="stylized-n">N</span><span class="stylized-a">A</span> KH<span class="stylized-a">A</span><span class="stylized-n">N</span></div>
+    </div>
     <header>
         <nav>
             <div class="logo">Munn<span class="blue-a">a</span> Kh<span class="blue-a">a</span>n</div>
@@ -21,6 +25,8 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -29,35 +35,40 @@
     <main>
         <section id="hero">
             <div class="hero-content">
-                <h1 class="fade-in">Munna Khan</h1>
-                <p class="animated-text fade-in"><span id="typed-text"></span><span class="cursor">|</span></p>
-                <p class="subtitle fade-in">A passionate CSE student with a keen interest in building robust software and scalable infrastructure.</p>
+                <h1 class="fade-in">Hi...... <br>I am <span class="neon-text" id="animated-name"></span></h1>
+                <p class="animated-text fade-in">Frontend Developer || MERN</p>
                 <div class="hero-buttons fade-in">
-                    <a href="#contact" class="btn primary-btn">Hire Me</a>
-                    <a href="https://drive.google.com/file/d/1kH7TWxZTt9t8kvl1MP-sYdd1JAd4EuM9/view?usp=drive_link" class="btn secondary-btn" target="_blank">Download CV</a>
+                    <a href="https://drive.google.com/file/d/1kH7TWxZTt9t8kvl1MP-sYdd1JAd4EuM9/view?usp=drive_link" class="btn primary-btn" target="_blank">Resume</a>
+                    <a href="#projects" class="btn secondary-btn">Portfolio</a>
                 </div>
             </div>
         </section>
 
         <section id="about" class="about-full-width-section">
-            <div class="about-background-blobs">
-                <div class="blob blob-1"></div>
-                <div class="blob blob-2"></div>
-                <div class="blob blob-3"></div>
-            </div>
-            <div class="container about-content-wrapper">
-                <div class="about-image-container scroll-reveal left">
-                    <img src="images/portfolio.jpg" alt="Munna Khan Profile Photo" class="about-profile-image-fw">
-                </div>
-                <div class="about-text-content scroll-reveal right">
-                    <h2 class="about-main-heading">About <span class="gradient-text">Me</span></h2>
-                    <p class="about-animated-subtitle">A passionate CSE student with a keen interest in building robust software and scalable infrastructure.</p>
-                    <p class="about-bio-fw">
-                        I am a Computer Science and Engineering undergraduate at BUBT (Bangladesh University of Business and Technology). My primary skills are in JavaScript, React, and Python, and I have a strong passion for full-stack development. I am also proficient with foundational DevOps tools such as Git, Docker, and implementing CI/CD pipelines. I am a firm believer in continuous learning and am always looking for opportunities to expand my knowledge and skills.
-                    </p>
-                </div>
-            </div>
-        </section>
+  <div class="about-background-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="container about-content-wrapper">
+    <div class="about-image-container">
+      <img src="images/portfolio.jpg" alt="Munna Khan Profile Photo" class="about-profile-image-fw">
+    </div>
+    <div class="about-text-content scroll-reveal right">
+      <h2 class="about-main-heading">About <span class="gradient-text">Me</span></h2>
+      <p class="about-animated-subtitle">
+        Committed to creating high‑quality web solutions through continuous learning and collaboration.
+      </p>
+      <p class="about-bio-fw">
+        I'm a front-end focused MERN stack developer with 1 year of experience at All Info Zone IT Solutions, building scalable web apps using React, Next.js, Tailwind CSS, and Redux. Before that, I worked as a Content Manager at STARZ UAE, handling digital content, UI design, and WordPress. I'm currently in my final semester of a Bachelor's in Computer Science & Engineering at IUBAT, actively sharpening my skills and staying up-to-date with modern development practices. My goal is to grow as a front-end developer by delivering clean, efficient, and user-friendly solutions using strong JavaScript and modern frameworks expertise.
+      </p>
+      <p class="about-bio-fw">
+        <strong>Technical Skills:</strong> React, Next.js, Tailwind CSS, Redux, Node.js, Express, MongoDB, Git, HTML, CSS, JavaScript, UI design, WordPress.
+      </p>
+    </div>
+  </div>
+</section>
+
 
         <section id="skills">
             <div class="container">
@@ -83,26 +94,88 @@
             <div class="container">
                 <h2>Projects</h2>
                 <div class="project-grid">
-                    <div class="project-card color-1">
-                        <div class="project-image"><img src="images/english-janala.jpg" alt="English Janala Project Image"></div> <!-- Placeholder for project image -->
+                    <div class="project-card">
+                        <div class="project-image"><img src="images/english-janala.jpg" alt="English Janala Project Image"></div>
                         <h3>English Janala – Vocabulary Learning Platform</h3>
                         <p>A platform for learning vocabulary with features like login validation, API-driven vocabulary fetching, and voice pronunciation.</p>
-                        <div class="technologies"><strong>Technologies:</strong> Python, Flask, JavaScript, HTML, CSS, REST APIs</div>
-                        <a href="https://english-janala-mk.netlify.app/" class="btn project-btn" target="_blank">View Project</a>
+                        <div class="technologies">
+                            <span>Python</span><span>Flask</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>REST APIs</span>
+                        </div>
+                        <a href="https://english-janala-mk.netlify.app/" class="btn project-btn" target="_blank">Live Link</a>
                     </div>
-                    <div class="project-card color-2">
-                        <div class="project-image"><img src="images/chitchat.jpg" alt="Chit Chat Project Image"></div> <!-- Placeholder for project image -->
+                    <div class="project-card">
+                        <div class="project-image"><img src="images/chitchat.jpg" alt="Chit Chat Project Image"></div>
                         <h3>Chit Chat – Real-Time Messaging App</h3>
                         <p>A secure real-time messaging application featuring email authentication, user presence, and chatrooms.</p>
-                        <div class="technologies"><strong>Technologies:</strong> Node.js, Express, Socket.io, MongoDB, React</div>
-                        <a href="https://github.com/MunnaKhan99/Chit-Chat" class="btn project-btn" target="_blank">View Project</a>
+                        <div class="technologies">
+                            <span>Node.js</span><span>Express</span><span>Socket.io</span><span>MongoDB</span><span>React</span>
+                        </div>
+                        <a href="https://github.com/MunnaKhan99/Chit-Chat" class="btn project-btn" target="_blank">Live Link</a>
                     </div>
-                    <div class="project-card color-3">
-                        <div class="project-image"><img src="images/titanic survival.png" alt="Titanic Survival Prediction Project Image"></div> <!-- Placeholder for project image -->
+                    <div class="project-card">
+                        <div class="project-image"><img src="images/titanic survival.png" alt="Titanic Survival Prediction Project Image"></div>
                         <h3>Titanic Survival Prediction – ML Model</h3>
                         <p>An ML model for predicting Titanic survival, involving extensive data cleaning, feature engineering, and model training.</p>
-                        <div class="technologies"><strong>Technologies:</strong> Python, Pandas, NumPy, Scikit-learn, Jupyter</div>
-                        <a href="https://drive.google.com/drive/folders/1yhsYjkRzo-LzvbW0t_lrt0bkAMbPmBFl?usp=sharing" class="btn project-btn" target="_blank">View Project</a>
+                        <div class="technologies">
+                            <span>Python</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span><span>Jupyter</span>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1yhsYjkRzo-LzvbW0t_lrt0bkAMbPmBFl?usp=sharing" class="btn project-btn" target="_blank">Live Link</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog">
+            <div class="container">
+                <h2>Documenting The Journey</h2>
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <h3>10 Must-Use Tailwind Class Types for Web Development</h3>
+                        <p>By Munna Khan</p>
+                        <p>Tailwind is a popular choice among frontend developers due to its customizability, reusability, and time-saving features.</p>
+                        <a href="#" class="btn blog-btn">Read More</a>
+                    </div>
+                    <div class="blog-card">
+                        <h3>Must Learn ES6 For React Developers</h3>
+                        <p>By Munna Khan</p>
+                        <p>With ES6, developers got powerful new features that boost readability and performance. If you're building applications using React, you must be well-versed in JavaScript ES6.</p>
+                        <a href="#" class="btn blog-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div class="container">
+                <h2>Client Confidence, Proven Results</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"Superfast delivery! He built my real estate website quickly and just as I wanted. I barely needed to explain. Highly recommended!"</p>
+                        <div class="client-info">
+                            <h4>Md Najir Ahamed Prodania</h4>
+                            <span>Chairman at Nexa Developments LTD</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Very Co-operative. Does Exactly As Instructed. Needed a Help with a Wordpress Website and He Provided the support in time."</p>
+                        <div class="client-info">
+                            <h4>Nasimul Alam</h4>
+                            <span>Graphic Designer At AdobeFaysal</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Needed a full-stack app urgently with a tight deadline, and he delivered it in just two days. Looking forward to working with him again!"</p>
+                        <div class="client-info">
+                            <h4>Ahmed Raad</h4>
+                            <span>Student at RUET</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Very Urgently needed a Landing Page for my Gaming Platform. He delivered it within a day. Didn't Have To Ask For Reviews. I am very happy with his work."</p>
+                        <div class="client-info">
+                            <h4>Abdullah Al Mamun</h4>
+                            <span>BeamLOL Owner</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,12 +183,12 @@
 
         <section id="contact">
             <div class="container">
-                <h2>Contact Me</h2>
-                <p class="contact-intro">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+                <h2 class="neon-text">Looking for a Reliable Developer?</h2>
+                <p class="contact-intro">Open to freelance, contract, or team roles.</p>
                 <div class="contact-grid">
                     <div class="contact-info">
                         <h3>Let's Connect</h3>
-                        <p>I'm currently seeking new opportunities. Whether you have a project in mind, a question, or just want to say hi, feel free to reach out!</p>
+                        <p>Feel free to reach out — whether you have a project idea, need advice, or just want to say hi. I'm here to help!</p>
                         <div class="info-item">
                             <img src="https://img.icons8.com/ios-filled/50/000000/email.png" alt="Email Icon">
                             <span>munnakhan01329@gmail.com</span>
@@ -128,6 +201,7 @@
                             <a href="https://www.linkedin.com/in/munna-khan-529a6b282/" target="_blank" aria-label="LinkedIn"><img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn"></a>
                             <a href="https://github.com/MunnaKhan99" target="_blank" aria-label="GitHub"><img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub"></a>
                         </div>
+                        <a href="mailto:munnakhan01329@gmail.com" class="btn primary-btn" style="margin-top: 1.5rem;">Send me an Email</a>
                     </div>
                     <form id="contact-form">
                         <div class="form-group floating-label-group">
