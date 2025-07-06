@@ -58,7 +58,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease-out;
+    transition: opacity 0.75s ease-out;
 }
 
 .preloader.hidden {
@@ -70,7 +70,7 @@ body {
     font-size: 3rem;
     font-weight: 700;
     color: var(--text-light);
-    animation: pulse 1.5s infinite alternate;
+    animation: pulse 2.5s infinite alternate;
 }
 
 .preloader .logo .stylized-n, .preloader .logo .stylized-a {
@@ -108,9 +108,7 @@ nav {
     color: var(--text-light);
 }
 
-.logo .blue-a {
-    color: var(--text-accent);
-}
+
 
 nav ul {
     list-style: none;
