@@ -155,24 +155,46 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(type, currentSpeed);
     }
 
-    // Start typing animation after name is typed
+    // Glitchy Typewriter Animation for Name
     const animatedNameElement = document.getElementById('animated-name');
     const nameToAnimate = "Munna Khan";
-    let nameCharIndex = 0;
+    const specialChars = "!@#$%^&*()_+-=[]{}|;:'\",.<>/?`~";
+    const glitchDuration = 1000; // milliseconds
+    const revealSpeed = 100; // milliseconds per character
 
-    function typeName() {
-        if (nameCharIndex < nameToAnimate.length) {
-            animatedNameElement.textContent += nameToAnimate.charAt(nameCharIndex);
-            nameCharIndex++;
-            setTimeout(typeName, 100); // Typing speed for name
-        } else {
-            console.log('Name fully typed, starting phrase typing.');
-            // Start phrase typing after name is fully typed
-            setTimeout(() => type(), 500); // Small delay before starting phrases
-        }
+    function getRandomChar() {
+        return specialChars[Math.floor(Math.random() * specialChars.length)];
     }
 
-    typeName();
+    function glitchAndType() {
+        let tempName = Array(nameToAnimate.length).fill('');
+        let revealIndex = 0;
+
+        const glitchInterval = setInterval(() => {
+            for (let i = revealIndex; i < nameToAnimate.length; i++) {
+                tempName[i] = getRandomChar();
+            }
+            animatedNameElement.textContent = tempName.join('');
+        }, 50); // Fast glitching
+
+        setTimeout(() => {
+            clearInterval(glitchInterval);
+            animatedNameElement.textContent = ''; // Clear for clean reveal
+
+            const typeInterval = setInterval(() => {
+                if (revealIndex < nameToAnimate.length) {
+                    animatedNameElement.textContent += nameToAnimate.charAt(revealIndex);
+                    revealIndex++;
+                } else {
+                    clearInterval(typeInterval);
+                    // Start phrase typing after name is fully typed
+                    setTimeout(() => type(), 500);
+                }
+            }, revealSpeed);
+        }, glitchDuration);
+    }
+
+    glitchAndType();
 
     // Scroll Reveal Animation for general elements
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
@@ -193,6 +215,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     scrollRevealElements.forEach(element => {
         observer.observe(element);
+    });
+
+    // Glowing border animation for project and blog cards
+    const glowingCards = document.querySelectorAll('.project-card, .blog-card');
+
+    const cardObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('glowing-border');
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, {
+        threshold: 0.3 // Trigger when 30% of the card is visible
+    });
+
+    glowingCards.forEach(card => {
+        cardObserver.observe(card);
     });
 
     // Active navigation link on scroll
@@ -286,4 +326,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Scroll to Top Button functionality
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 200) { // Show button after scrolling 200px
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 });

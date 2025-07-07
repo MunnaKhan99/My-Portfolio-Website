@@ -980,3 +980,43 @@ footer {
 .hamburger-menu.active .bar:nth-child(3) {
     transform: translateY(-0.43rem) rotate(-45deg);
 }
+
+/* Scroll to Top Button */
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background-color: rgba(var(--primary-dark-rgb), 0.8);
+    color: var(--text-accent);
+    border: 1px solid var(--border-neon);
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(1.5rem); /* Start slightly below */
+    transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+    z-index: 999;
+    box-shadow: 0 0 10px var(--text-accent);
+}
+
+.scroll-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Slide up to original position */
+}
+
+.scroll-to-top-btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 0 15px var(--text-accent);
+}
+
+.scroll-to-top-btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+}
