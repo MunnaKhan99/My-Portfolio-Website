@@ -96,10 +96,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
-    max-width: 75rem;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: .5rem 3.5rem; /* Keep horizontal padding */
+    width: 100%; /* Ensure it takes full width */
 }
 
 .logo {
@@ -120,7 +118,7 @@ nav ul {
 }
 
 nav ul li {
-    margin-left: 1.5rem;
+    margin-left: 1rem;
 }
 
 nav ul li a {
@@ -202,7 +200,7 @@ section {
 /* Hero Section */
 #hero {
     background-color: transparent;
-    height: 100vh;
+    min-height: 100vh; /* Changed to min-height for responsive content */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,7 +214,7 @@ section {
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 8vw, 5rem); /* Responsive font size */
     margin-bottom: 0.6rem;
     color: var(--text-light);
 }
@@ -230,7 +228,7 @@ section {
 }
 
 .animated-text {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive font size */
     margin-bottom: 1.2rem;
     color: var(--text-accent);
 }
@@ -409,7 +407,7 @@ h2 {
   align-items: center;
   gap: 3rem;
   text-align: center;
-  padding: 2rem; /* Added padding for content wrapper */
+  padding: 2rem 0; /* Adjusted padding for consistent horizontal spacing */
     background-color: rgba(34, 34, 59, 0.5); /* More transparent secondary-dark */
     border-radius: 0.5rem;
 }
@@ -912,18 +910,65 @@ footer {
     border-top: 1px solid var(--border-neon);
 }
 
-/* Responsive Design */
-@media (max-width: 48rem) {
+/* Responsive Design for Hero Section */
+
+/* Extra Large Displays (Default styles, already set) */
+/* h1: clamp(2.5rem, 8vw, 5rem); */
+/* .animated-text: clamp(1.5rem, 4vw, 2.5rem); */
+
+/* Laptop Displays (max-width: 1024px / 64rem) */
+@media (max-width: 78rem) {
+    #hero {
+        min-height: 80vh; /* Slightly less height */
+        padding: 2rem 0;
+    }
+
+    .hero-content {
+        padding: 1rem;
+    }
+
     .hero-content h1 {
-        font-size: 2.8rem;
+        font-size: clamp(2.2rem, 7vw, 4.5rem);
     }
 
     .animated-text {
-        font-size: 1.5rem;
+        font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+    }
+}
+
+/* Laptop Displays (min-width: 1025px and max-width: 1440px) */
+@media (min-width: 64.063rem) and (max-width: 90rem) {
+    #hero {
+        min-height: 80vh; /* Further reduced height for laptops */
+        padding: 3rem 0;
     }
 
-    .hero-content .subtitle {
-        font-size: 1rem;
+    .hero-content h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .animated-text {
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    }
+}
+
+/* Tablet Displays (max-width: 768px / 48rem) */
+@media (max-width: 48rem) {
+    #hero {
+        min-height: 70vh; /* Further reduced height */
+        padding: 1.5rem 0;
+    }
+
+    .hero-content {
+        padding: 0.8rem;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.8rem, 6vw, 3.5rem);
+    }
+
+    .animated-text {
+        font-size: clamp(1rem, 3vw, 1.8rem);
     }
 
     .btn {
@@ -937,6 +982,36 @@ footer {
 
     .contact-info, #contact-form {
         padding: 1.5rem;
+    }
+}
+
+/* Mobile Displays (max-width: 480px / 30rem) */
+@media (max-width: 30rem) {
+    #hero {
+        min-height: 60vh; /* Even more reduced height for mobile */
+        padding: 1rem 0;
+    }
+
+    .hero-content {
+        padding: 0.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    .animated-text {
+        font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .btn {
+        width: 80%; /* Make buttons take more width */
+        margin: 0 auto; /* Center buttons */
     }
 }
 
