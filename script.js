@@ -227,8 +227,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 top: targetSection.offsetTop - document.querySelector('header').offsetHeight, // Adjust for fixed header
                 behavior: 'smooth'
             });
+            // Close mobile menu on link click
+            if (navLinksContainer.classList.contains('active')) {
+                hamburgerMenu.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            }
         });
     });
+
+    // Hamburger menu functionality
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const navLinksContainer = document.querySelector('.nav-links');
+
+    if (hamburgerMenu && navLinksContainer) {
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
+    }
 
     // Contact Form Submission
     const contactForm = document.getElementById('contact-form');
