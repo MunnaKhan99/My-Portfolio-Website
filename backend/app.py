@@ -6,7 +6,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
 app = Flask(__name__)
@@ -46,8 +45,7 @@ Message: {message}
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
             smtp.login(SENDER_EMAIL, SENDER_PASSWORD)
             smtp.send_message(msg)
-
-        return jsonify({'message': 'Email sent successfully!'}), 200
+        return jsonify({'message': 'successfully send email!'}), 200
 
     except Exception as e:
         print(f"Error sending email: {e}")
